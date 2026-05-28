@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Mubarak | M.F. MASUD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#021B1A,#063d31,#000);
+color:white;
+}
+
+/* INTRO */
+
+#intro{
+position:absolute;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:100;
+animation:introHide 5s forwards;
+}
+
+.introTitle{
+font-size:55px;
+font-weight:bold;
+background:linear-gradient(45deg,#00ffcc,#FFD700,#ff00ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:zoom 2s infinite alternate;
+}
+
+.introSub{
+margin-top:15px;
+font-size:18px;
+letter-spacing:3px;
+color:#ddd;
+}
+
+@keyframes zoom{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.08);
+}
+}
+
+@keyframes introHide{
+0%,85%{
+opacity:1;
+visibility:visible;
+}
+100%{
+opacity:0;
+visibility:hidden;
+}
+}
+
+/* FLOATING SYMBOLS */
+
+.symbols{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:1;
+}
+
+.symbols span{
+position:absolute;
+bottom:-100px;
+animation:float linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+/* MAIN */
+
+.main{
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+z-index:2;
+padding:20px;
+}
+
+.box{
+width:100%;
+max-width:430px;
+padding:35px;
+border-radius:25px;
+text-align:center;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+box-shadow:0 0 25px rgba(0,255,170,0.3);
+animation:fade 1.5s ease;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+h1{
+font-size:38px;
+color:#FFD700;
+margin-bottom:15px;
+text-shadow:0 0 15px #FFD700;
+}
+
+input{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:12px;
+font-size:16px;
+background:rgba(255,255,255,0.12);
+color:white;
+margin-top:20px;
+}
+
+input::placeholder{
+color:#ddd;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:none;
+border-radius:12px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(45deg,#00ff99,#00ccff);
+transition:0.4s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+#wishPage{
+display:none;
+}
+
+.moon{
+font-size:75px;
+animation:moon 3s ease-in-out infinite;
+}
+
+@keyframes moon{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-12px);
+}
+}
+
+.name{
+font-size:42px;
+margin-top:10px;
+color:#FFD700;
+font-weight:bold;
+text-shadow:0 0 15px #FFD700;
+}
+
+.caption{
+margin-top:25px;
+font-size:22px;
+line-height:1.8;
+min-height:120px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{
+text-shadow:0 0 5px #00ffcc;
+}
+to{
+text-shadow:0 0 20px #00ffcc;
+}
+}
+
+/* DEVELOPER */
+
+.dev{
+position:absolute;
+bottom:15px;
+width:100%;
+text-align:center;
+font-size:17px;
+font-weight:bold;
+background:linear-gradient(45deg,#00ffcc,#FFD700,#ff00ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:dev 2s infinite alternate;
+z-index:3;
+}
+
+@keyframes dev{
+from{
+opacity:0.6;
+}
+to{
+opacity:1;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+
+<div class="introTitle">
+EID MUBARAK
+</div>
+
+<div class="introSub">
+WELCOME TO SPECIAL WISH
+</div>
+
+</div>
+
+<!-- FLOATING SYMBOLS -->
+<div class="symbols" id="symbols"></div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- INPUT PAGE -->
+<div class="box" id="inputPage">
+
+<h1>🌙 Eid Mubarak 🌙</h1>
+
+<p>Enter Your Beautiful Name</p>
+
+<input type="text" id="name" placeholder="Type your name...">
+
+<button onclick="generateWish()">
+Generate Wish ✨
+</button>
+
+</div>
+
+<!-- WISH PAGE -->
+<div class="box" id="wishPage">
+
+<div class="moon">🌙</div>
+
+<h1>Eid Mubarak</h1>
+
+<div class="name" id="showName"></div>
+
+<div class="caption" id="caption"></div>
+
+</div>
+
+</div>
+
+<!-- DEVELOPER -->
+<div class="dev">
+DEVELOPER BY M.F. MASUD
+</div>
+
+<script>
+
+/* FLOATING SYMBOLS */
+
+const symbols = document.getElementById("symbols");
+
+const icons = [
+"🌙","⭐","✨","🕌","☪️","💫","🤍","🌸"
+];
+
+for(let i=0;i<80;i++){
+
+let span = document.createElement("span");
+
+span.innerHTML =
+icons[Math.floor(Math.random()*icons.length)];
+
+span.style.left = Math.random()*100 + "%";
+
+span.style.fontSize =
+(Math.random()*25+15)+"px";
+
+span.style.animationDuration =
+(Math.random()*10+5)+"s";
+
+span.style.opacity = Math.random();
+
+symbols.appendChild(span);
+
+}
+
+/* CAPTIONS */
+
+const captions = [
+
+"✨ ঈদের আনন্দ তোমার জীবন ভরে তুলুক সুখে ও শান্তিতে ✨",
+
+"🌙 Eid Mubarak! May Allah bless you forever 🌙",
+
+"💖 তোমার প্রতিটি দিন হোক ঈদের দিনের মতো সুন্দর 💖",
+
+"⭐ Wishing you endless happiness and success ⭐",
+
+"🕌 ঈদের ভালোবাসা ছড়িয়ে পড়ুক চারদিকে 🕌",
+
+"✨ May this Eid bring peace into your heart ✨",
+
+"🌸 ঈদ মোবারক! আল্লাহ তোমার সব দোয়া কবুল করুন 🌸",
+
+"☪️ Stay happy, stay blessed, Eid Mubarak ☪️",
+
+"💫 তোমার হাসি হোক ঈদের সবচেয়ে সুন্দর উপহার 💫",
+
+"🌙 Enjoy every beautiful moment of this Eid 🌙",
+
+"🤍 আল্লাহ তোমার জীবন নূরে ভরে দিন 🤍",
+
+"⭐ Eid Mubarak To You & Your Family ⭐",
+
+"✨ সুখ, শান্তি আর ভালোবাসায় ভরে উঠুক তোমার জীবন ✨",
+
+"🌸 Sending lots of love and duas for you 🌸",
+
+"🕌 এই ঈদ তোমার জীবনে রহমত বয়ে আনুক 🕌",
+
+"💖 May your dreams come true this Eid 💖",
+
+"🌙 তোমার জীবন হোক চাঁদের আলোর মতো উজ্জ্বল 🌙",
+
+"⭐ Keep smiling and enjoy this beautiful Eid ⭐",
+
+"☪️ আল্লাহ তোমাকে সবসময় নিরাপদে রাখুন ☪️",
+
+"✨ Eid Mubarak! Stay blessed forever ✨",
+
+"🌸 নতুন আশা আর আনন্দ নিয়ে আসুক এই ঈদ 🌸",
+
+"💫 Happiness begins with Eid moments 💫",
+
+"🤍 ঈদের শুভেচ্ছা ও ভালোবাসা রইলো 🤍",
+
+"🌙 May your life shine like the Eid moon 🌙",
+
+"⭐ Eid Mubarak My Dear Friend ⭐",
+
+"🕌 এই ঈদ তোমার জীবনে রহমত বয়ে আনুক 🕌",
+
+"💖 Allah’s blessings are always with you 💖",
+
+"✨ আনন্দে কাটুক তোমার প্রতিটি মুহূর্ত ✨",
+
+"🌸 May Allah accept all your prayers 🌸",
+
+"☪️ ঈদ মানেই আনন্দ, ভালোবাসা আর হাসি ☪️"
+
+];
+
+/* GENERATE */
+
+function generateWish(){
+
+let name =
+document.getElementById("name").value;
+
+if(name.trim() == ""){
+
+alert("Please enter your name!");
+
+return;
+
+}
+
+document.getElementById("showName").innerText =
+name;
+
+document.getElementById("inputPage").style.display =
+"none";
+
+document.getElementById("wishPage").style.display =
+"block";
+
+/* FIRST CAPTION */
+
+changeCaption();
+
+/* AUTO CHANGE */
+
+setInterval(changeCaption,3000);
+
+}
+
+/* CHANGE CAPTION */
+
+function changeCaption(){
+
+let random =
+captions[Math.floor(Math.random()*captions.length)];
+
+document.getElementById("caption").innerHTML =
+random;
+
+}
+
+</script>
+
+</body>
+</html>
